@@ -60,9 +60,9 @@ object NetworkModule {
         return retrofit.create(ApiService::class.java)
     }
 
-    @Singleton
+/*    @Singleton
     @Provides
     fun provideRepository(apiService: ApiService): Repository {
         return Repository(apiService)
-    }
+    }*/
 }
