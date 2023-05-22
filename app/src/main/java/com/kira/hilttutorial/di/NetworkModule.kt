@@ -1,5 +1,7 @@
 package com.kira.hilttutorial.di
 
+import com.kira.hilttutorial.network.ApiService
+import com.kira.hilttutorial.network.Constants.BASE_URL
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -15,6 +17,11 @@ import javax.inject.Singleton
 @InstallIn(SingletonComponent::class)
 object NetworkModule {
 
+    @Singleton
+    @Provides
+    fun provideBaseUrl(): String {
+        return BASE_URL
+    }
     @Singleton
     @Provides
     fun provideLoggingInterceptor(): HttpLoggingInterceptor {
@@ -45,5 +52,11 @@ object NetworkModule {
             .client(okHttpClient)
             .addConverterFactory(converterFactory)
             .build()
+    }
+
+    @Singleton
+    @Provides
+    fun provideApiService(retrofit: Retrofit): ApiService {
+        return retrofit.create(ApiService::class.java)
     }
 }
