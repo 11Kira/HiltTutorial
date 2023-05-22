@@ -7,7 +7,7 @@ fun Response<List<User>>.mapUsersToDomain(): List<User> {
     return this.body()?.map { user ->
         User(
             id = user.id,
-            uuid = user.uuid,
+            uid = user.uid,
             firstName = user.firstName,
             lastName = user.lastName,
             userName = user.userName
