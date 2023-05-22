@@ -2,7 +2,6 @@ package com.kira.hilttutorial.di
 
 import com.kira.hilttutorial.network.ApiService
 import com.kira.hilttutorial.network.Constants.BASE_URL
-import com.kira.hilttutorial.network.Repository
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn

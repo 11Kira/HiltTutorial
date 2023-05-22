@@ -1,7 +1,8 @@
-package com.kira.hilttutorial
+package com.kira.hilttutorial.main
 
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
+import com.kira.hilttutorial.R
 
 class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
