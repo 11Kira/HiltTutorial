@@ -1,4 +1,4 @@
-package com.kira.hilttutorial.model
+package com.kira.hilttutorial.main.user.model
 
 import com.google.gson.annotations.SerializedName
 
