@@ -27,19 +27,16 @@ object NetworkModule {
     fun provideLoggingInterceptor(): HttpLoggingInterceptor {
         return HttpLoggingInterceptor().setLevel(HttpLoggingInterceptor.Level.BODY)
     }
-
     @Singleton
     @Provides
     fun provideConverterFactory(): Converter.Factory {
         return GsonConverterFactory.create()
     }
-
     @Singleton
     @Provides
     fun provideOkHttpClient(httpLoggingInterceptor: HttpLoggingInterceptor): OkHttpClient {
         return OkHttpClient.Builder().addInterceptor(httpLoggingInterceptor).build()
     }
-
     @Singleton
     @Provides
     fun provideRetrofit(
@@ -53,16 +50,9 @@ object NetworkModule {
             .addConverterFactory(converterFactory)
             .build()
     }
-
     @Singleton
     @Provides
     fun provideApiService(retrofit: Retrofit): ApiService {
         return retrofit.create(ApiService::class.java)
     }
-
-/*    @Singleton
-    @Provides
-    fun provideRepository(apiService: ApiService): Repository {
-        return Repository(apiService)
-    }*/
 }
