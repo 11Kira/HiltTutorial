@@ -5,7 +5,9 @@ import android.util.Log
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.DataBindingUtil
+import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.lifecycleScope
+import androidx.lifecycle.repeatOnLifecycle
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.kira.hilttutorial.R
 import com.kira.hilttutorial.databinding.ActivityMainBinding
@@ -28,25 +30,22 @@ class MainActivity : AppCompatActivity() {
         setupObserver()
     }
 
-    override fun onResume() {
-        super.onResume()
-        viewModel.getRandomUsers()
-    }
-
     private fun setupObserver() {
         lifecycleScope.launch {
-            viewModel.userState.collect {state ->
-                when (state){
-                    is UserState.ShowError -> {
-                        Log.e("Error: ", state.error.toString())
-                    }
+            repeatOnLifecycle(Lifecycle.State.STARTED) {
+                viewModel.userState.collect { state ->
+                    when (state){
+                        is UserState.ShowError -> {
+                            Log.e("Error: ", state.error.toString())
+                        }
 
-                    is UserState.SetResults -> {
-                        setupRecyclerView(state.userList)
-                    }
+                        is UserState.SetResults -> {
+                            setupRecyclerView(state.userList)
+                        }
 
-                    else -> {
-                        Log.e("Error: ", state.toString())
+                        else -> {
+                            Log.e("Error: ", state.toString())
+                        }
                     }
                 }
             }

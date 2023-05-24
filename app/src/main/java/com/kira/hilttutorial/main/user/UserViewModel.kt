@@ -16,7 +16,7 @@ class UserViewModel @Inject constructor(private val userUseCase: UserUseCase): V
     private val mutableUserState: MutableSharedFlow<UserState> = MutableSharedFlow()
     val userState = mutableUserState.asSharedFlow()
 
-    fun getRandomUsers() {
+    init {
         viewModelScope.launch(
             CoroutineExceptionHandler {_, error -> runBlocking { mutableUserState.emit(UserState.ShowError(error = error)) } }
         ) {
